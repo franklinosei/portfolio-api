@@ -4,7 +4,7 @@ const cors = require('cors');
 const nodemailer = require('nodemailer');
 const router = express.Router();
 const creds = require('./config');
-const bodyParser = require('body-parser');
+
 
 const db = knex({
     client: 'pg',
@@ -21,7 +21,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/api/contact', router);
-app.use(bodyParser.urlencoded())
+
 
 
 const transport = {
@@ -106,4 +106,4 @@ app.get('/api/education', (req, res) => {
 
 */}
 
-app.listen(3001);
+app.listen(process.env.PORT);
