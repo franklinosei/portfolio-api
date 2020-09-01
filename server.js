@@ -9,10 +9,8 @@ const creds = require('./config');
 const db = knex({
     client: 'pg',
     connection: {
-      host : '127.0.0.1',
-      user : 'iamdveloper',
-      password : 'iamdveloper',
-      database : 'iamdveloper'
+        connectionString: process.env.DATABASE_URL,
+        ssl: true,
     }
   });
 
@@ -53,7 +51,7 @@ app.post('/api/contact', (req, res, next) => {
     const mail = {
         from: name,
         to: creds.USER,
-        subject: "New Message from Contact Form",
+        subject: "New Message from Portfolio site",
         text: content
     }
 
