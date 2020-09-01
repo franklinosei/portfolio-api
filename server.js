@@ -10,7 +10,7 @@ const db = knex({
     client: 'pg',
     connection: {
         connectionString: process.env.DATABASE_URL,
-        ssl: true,
+        ssl: true
     }
   });
 
@@ -23,7 +23,7 @@ app.use('/api/contact', router);
 
 
 const transport = {
-    host: "smtp.gmail.com",
+    host: "stmp.gmail.com",
     port: 465,
     auth: {
         user: creds.USER,
@@ -49,9 +49,9 @@ app.post('/api/contact', (req, res, next) => {
     const content = `name: ${name} \n email: ${email} \n message: ${message}`
 
     const mail = {
-        from: name,
+        from: email,
         to: creds.USER,
-        subject: "New Message from Portfolio site",
+        subject: "New Message from " + name,
         text: content
     }
 
@@ -76,7 +76,7 @@ app.post('/api/contact', (req, res, next) => {
         if (error) {
             console.log(error)
         }else {
-            console.log("Message sent " + info.response );
+            console.log("Message sent ");
         }
     }
     )
