@@ -10,7 +10,7 @@ const db = knex({
     client: 'pg',
     connection: {
         connectionString: process.env.DATABASE_URL,
-        ssl: true
+        ssl: true,
     }
   });
 
@@ -23,7 +23,7 @@ app.use('/api/contact', router);
 
 
 const transport = {
-    host: "stmp.gmail.com",
+    host: "smtp.gmail.com",
     port: 465,
     auth: {
         user: creds.USER,
@@ -66,6 +66,7 @@ app.post('/api/contact', (req, res, next) => {
             })
         }
     })
+    
 
     transporter.sendMail(
       {  from: creds.USER,
